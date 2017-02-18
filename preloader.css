@@ -1,0 +1,56 @@
+/* Animations*/
+@-webkit-keyframes ImageLoader {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@-moz-keyframes ImageLoader {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@-o-keyframes ImageLoader {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes ImageLoader {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* The image preloader MUST be relatively positioned.
+Otherwise the gradient overlay will cover much more area than intended.*/
+.img__preloader {
+	position: relative;
+	display: inline-block;
+}
+
+/* Make all preloaders have an overlaying gradient*/
+.preload__images .img__preloader::after {
+	content: ' ';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	background: linear-gradient(47deg, #0e0f11, #1e2024, #0e0f11);
+	background-size: 600% 600%;
+	-webkit-animation: ImageLoader 14s linear 2;
+	-moz-animation: ImageLoader 14s linear 2;
+	-o-animation: ImageLoader 14s linear 2;
+	animation: ImageLoader 14s linear 2;
+	opacity: 1;
+	/* Want to change the fadeout time? Change the `450ms` to whatever you like.*/
+	transition: opacity 450ms linear;
+
+}
+
+/* When all images are done loading we append a fadeout class. */
+.preload__images--fadeout .img__preloader::after {
+	opacity: 0;
+}
